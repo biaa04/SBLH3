@@ -9,7 +9,7 @@
 <body>
 <h1>Shows</h1>
 
-<a href="">Nova Banda</a>
+<a href="NovaBanda.jsp">Nova Banda</a>
 
 
 <h1>Locais</h1>

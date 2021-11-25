@@ -5,8 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
 import model.Banda;
+
 
 public class DAO {
 	
@@ -20,13 +20,14 @@ public class DAO {
 
       return instance;
     }
-
-    private DAO() {
+//
+    DAO() {
       entityManager = getEntityManager();
     }
 
     private EntityManager getEntityManager() {
-     EntityManagerFactory factory = Persistence.createEntityManagerFactory("SBLH");
+     EntityManagerFactory factory =
+     Persistence.createEntityManagerFactory("SBLH");
      if (entityManager == null) {
        entityManager = factory.createEntityManager();
      }
@@ -44,7 +45,7 @@ public class DAO {
       Banda.class.getName()).getResultList();
     }
 
-    public void persist(Banda banda) {
+    public void NewBanda(Banda banda) {
       try {
          entityManager.getTransaction().begin();
          entityManager.persist(banda);
@@ -55,7 +56,7 @@ public class DAO {
       }
     }
 
-    public void merge(Banda banda) {
+    public void EditarBanda(Banda banda) {
       try {
          entityManager.getTransaction().begin();
          entityManager.merge(banda);
@@ -66,7 +67,7 @@ public class DAO {
       }
     }
 
-    public void remove(Banda banda) {
+    public void RemoveBanda(Banda banda) {
       try {
          entityManager.getTransaction().begin();
          banda = entityManager.find(Banda.class, banda.getIdbanda());
@@ -80,11 +81,12 @@ public class DAO {
 
     public void removeById(final int idbanda) {
       try {
-    	  Banda banda = getById(idbanda);
-         remove(banda);
+         Banda banda = getById(idbanda);
+         RemoveBanda(banda);
       } catch (Exception ex) {
          ex.printStackTrace();
       }
-    }       
+    }
 
+	
 }
