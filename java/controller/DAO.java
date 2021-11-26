@@ -21,7 +21,7 @@ public class DAO {
       return instance;
     }
 //
-    DAO() {
+    public DAO() {
       entityManager = getEntityManager();
     }
 

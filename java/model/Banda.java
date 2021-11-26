@@ -8,20 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "banda")
+//@Table(name = "banda")
 public class Banda {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idbanda;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="local_seq")
+	private Long idbanda;
 	@Column
 	private String nome;
 	@Column
 	private String genero;
 	
-	public int getIdbanda() {
+	public Long getIdbanda() {
 		return idbanda;
 	}
-	public void setIdbanda(int idbanda) {
+	public void setIdbanda(Long idbanda) {
 		this.idbanda = idbanda;
 	}
 	public String getNome() {

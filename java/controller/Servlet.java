@@ -19,10 +19,14 @@ import controller.DAO;
 public class Servlet extends HttpServlet {
 	
 	 private static final long serialVersionUID = 1L;
-	    private DAO dao = new DAO();
+	    DAO dao = new DAO();
 	   
+       public Servlet() {
+			super();
+			
+		}
 
-	    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+		protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	        doGet(request, response);
 	    }
@@ -34,17 +38,18 @@ public class Servlet extends HttpServlet {
 	        try {
 	            switch (action) {
 	                case "/novabanda":
-	                    showNewForm(request, response);
+	                	insertBanda(request, response);
+	                 //   showNewForm(request, response);
 	                    break;
-	                case "/insert":
+	               /* case "/insert":
 	                    insertBanda(request, response);
-	                    break;
+	                    break;*/
 	                case "/delete":
 	                    deleteBanda(request, response);
 	                    break;
-	                case "/edit":
-	                    showEditForm(request, response);
-	                    break;
+	              //  case "/edit":
+	                 //   showEditForm(request, response);
+	               //     break;
 	                case "/update":
 	                    updateBanda(request, response);
 	                    break;
@@ -65,7 +70,7 @@ public class Servlet extends HttpServlet {
 	        dispatcher.forward(request, response);
 	    }
 
-	    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+	  /*  private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("NovaBanda.jsp");
 	        dispatcher.forward(request, response);
@@ -79,7 +84,7 @@ public class Servlet extends HttpServlet {
 	        request.setAttribute("banda", existingBanda);
 	        dispatcher.forward(request, response);
 
-	    }
+	    }*/
 
 	    private void insertBanda(HttpServletRequest request, HttpServletResponse response)
 	    throws SQLException, IOException {

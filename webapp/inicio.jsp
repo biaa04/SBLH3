@@ -10,12 +10,12 @@
 <body>
 
   <h1>SBLH</h1>
-        <h2>
+        <h3>
          <a href="NovaBanda.jsp">Nova Banda</a>
          &nbsp;&nbsp;&nbsp;
-         <a href="list">Lista de Bandas</a>
+       
          
-        </h2>
+        </h3>
 
     
         <table >
@@ -28,7 +28,7 @@
             </tr>
             <c:forEach var="banda" items="${listBanda}">
                 <tr>
-                    <td><c:out value="${banda.id}" /></td>
+                    <td><c:out value="${banda.idbanda}" /></td>
                     <td><c:out value="${banda.name}" /></td>
                     <td><c:out value="${banda.genero}" /></td>
                    
