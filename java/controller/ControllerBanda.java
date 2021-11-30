@@ -1,68 +1,43 @@
 package controller;
 
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 
-import model.Banda;
+@WebServlet("/controllerBanda")
+public class controllerBanda extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+daoBanda DB = new daoBanda();
+   
+    public controllerBanda() {
+       super();
+    }
 
-public class ControllerBanda {
-	public EntityManager getEM() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("PU");
-		return factory.createEntityManager();
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	}
-	
-	/*//EntityManagerFactory emf;
-	//EntityManager em;
-	
-	public ControllerBanda() {
-		//emf = Persistence.createEntityManagerFactory("PU");
-		//em = emf.createEntityManager();
-	}*/
-	
-	public Banda salvar(Banda banda) {
-		EntityManager em = getEM();
-		try{em.getTransaction().begin();
-		    em.persist(banda);
-		    em.getTransaction().commit();
-		}catch(Exception e) {
-			em.getTransaction().rollback();		
-		}finally {
-			em.close();
-		}
-		return banda;
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
-	}
-	
-	public void remove(Banda banda) {
-		EntityManager em =getEM();
-		Banda banda= em.find(Banda.class, idbanda);
-		try {
-			em.getTransaction().begin();
-			em.remove(banda);
-			em.getTransaction().commit();
-		}finally {
-			em.close();
+		String action = request.getServletPath();
+		//System.out.println();
+		if(action.equals("/novabanda")) {
+	            salvar(request,response);
 		}
 	}
 	
-	public Banda pesquisarPorId(Long idbanda) {
-		EntityManager em = getEM();
-		Banda
-		return null;
+	protected void salvar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
+		response.sendRedirect("NovaBanda.jsp");
 	}
+
 	
-	/*public void remover(Banda banda) {
-		em.getTransaction().begin();
-		Query q = em.createNamedQuery("delete banda from banda where idbanda ="+banda.getNome());
-		em.getTransaction().commit();
-		emf.close();
-	}*/
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
 }
-
-

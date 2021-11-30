@@ -66,7 +66,8 @@ public class Servlet extends HttpServlet {
 	    throws SQLException, IOException, ServletException {
 	        List < Banda > listBanda = dao.findAll();
 	        request.setAttribute("listagem", listBanda);
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("NovaBanda.jsp");
+	        System.out.println(listBanda.size());
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("inicio.jsp");
 	        dispatcher.forward(request, response);
 	    }
 
