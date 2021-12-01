@@ -7,36 +7,50 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/controllerBanda")
+@WebServlet(urlPatterns = { "/controllerBanda", "/main", "/novabanda" })
 public class controllerBanda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-daoBanda DB = new daoBanda();
-   
-    public controllerBanda() {
-       super();
-    }
+	daoBanda DB = new daoBanda();
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public controllerBanda() {
+		super();
+
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		String action = request.getServletPath();
-		//System.out.println();
-		if(action.equals("/novabanda")) {
-	            salvar(request,response);
+		System.out.println(action);
+		if (action.equals("/main")) {
+			lBanda(request, response);
+		} else if(action.equals("/novabanda")){
+			novaBanda(request, response);
+				
+		}else {
+			response.sendRedirect("index.html");
 		}
+
+	}
+//listar
+	protected void lBanda(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		response.sendRedirect("index.jsp");
 	}
 	
-	protected void salvar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-		response.sendRedirect("NovaBanda.jsp");
+//nova banda
+	protected void novaBanda(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		System.out.println(request.getParameter("nome"));
+		System.out.println(request.getParameter("genero"));
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 

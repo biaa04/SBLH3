@@ -67,7 +67,7 @@ public class Servlet extends HttpServlet {
 	        List < Banda > listBanda = dao.findAll();
 	        request.setAttribute("listagem", listBanda);
 	        System.out.println(listBanda.size());
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("inicio.jsp");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 	        dispatcher.forward(request, response);
 	    }
 
